@@ -1,0 +1,13 @@
+# Python / uv
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+
+# Temporary analysis files
+pdf_text.txt
+*.tmp
+
+# OS files
+.DS_Store
+Thumbs.db
