@@ -433,42 +433,64 @@ with tab4:
 with tab5:
     st.subheader("Series Temporales Minutales (Flujo y Presión Dual-Head)")
     
-    st.markdown("Seleccione una o varias parcelas para comparar la cinética minutal registrada por el equipo SATURO:")
+    st.markdown("Seleccione las parcelas y la variable que desea comparar a lo largo del tiempo de ensayo:")
     
+    col_sel1, col_sel2 = st.columns([3, 2])
     parcel_options = [t["name"] for t in tests]
-    selected_parcels = st.multiselect("Parcelas a visualizar:", parcel_options, default=parcel_options[:3])
+    
+    with col_sel1:
+        selected_parcels = st.multiselect("Parcelas a visualizar:", parcel_options, default=parcel_options[:3])
+    with col_sel2:
+        var_choice = st.radio(
+            "Variable a graficar:",
+            ["Tasa de Infiltración (cm/h)", "Infiltración Acumulada (cm)", "Presión Hidráulica H (cm)"],
+            horizontal=True
+        )
     
     if selected_parcels and time_series:
         fig_ts = go.Figure()
         
+        # Mapeo de la variable seleccionada
+        var_key = "flux_cm_h"
+        y_label = "Tasa de Infiltración q (cm/h)"
+        if var_choice == "Infiltración Acumulada (cm)":
+            var_key = "cum_infil_cm"
+            y_label = "Lámina Infiltrada Acumulada I (cm)"
+        elif var_choice == "Presión Hidráulica H (cm)":
+            var_key = "pressure_cm"
+            y_label = "Carga de Presión Hidrostática H (cm)"
+            
         for p_name in selected_parcels:
-            # Buscar test
             match_test = next((t for t in tests if t["name"] == p_name), None)
             if match_test:
-                t_id = match_test["id"]
-                series_data = time_series.get(t_id, {})
+                # El diccionario time_series está indexado por el nombre del ensayo (p_name)
+                series_data = time_series.get(p_name) or time_series.get(match_test.get("id"), {})
                 t_arr = series_data.get("time_min", [])
-                f_arr = series_data.get("flux_cm_h", [])
+                y_arr = series_data.get(var_key, [])
                 
-                if t_arr and f_arr:
+                if t_arr and y_arr:
                     fig_ts.add_trace(go.Scatter(
                         x=t_arr,
-                        y=f_arr,
+                        y=y_arr,
                         mode='lines+markers',
                         name=f"{p_name} ({match_test['site']})",
-                        marker=dict(size=4)
+                        marker=dict(size=4),
+                        line=dict(width=2)
                     ))
                     
         fig_ts.update_layout(
-            title="Tasa de Infiltración Minutal (cm/h) a lo largo del Ensayo",
+            title=f"Dinámica Minutal: {var_choice}",
             xaxis_title="Tiempo Transcurrido (min)",
-            yaxis_title="Tasa de Infiltración q (cm/h)",
+            yaxis_title=y_label,
             template="simple_white",
-            height=460,
+            height=480,
             hovermode="x unified",
-            margin=dict(l=40, r=40, t=50, b=40)
+            margin=dict(l=40, r=40, t=50, b=40),
+            legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1)
         )
         st.plotly_chart(fig_ts, use_container_width=True)
+    else:
+        st.info("Seleccione al menos una parcela para visualizar las curvas de infiltración.")
 
 # =============================================================================
 # TAB 6: MODELOS FÍSICOS DE INFILTRACIÓN
