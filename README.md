@@ -27,19 +27,20 @@ Repositorio oficial de datos, modelos hidrodinámicos, figuras de alta resoluci�
 
 ## 🚀 Despliegue en la Web (Publicación Online Gratuita)
 
-### Opción 1: Publicación en Streamlit Cloud (`*.streamlit.app`) — Ideal para compartir
-Permite obtener una URL pública oficial (ejemplo: `https://hidrologia-suelos-ecuador.streamlit.app`) para compartir con colegas y revisores:
-1. Suba esta carpeta a un repositorio en su cuenta de GitHub (ej. `hidrologia-cafetales-ecuador`).
-2. Ingrese a [share.streamlit.io](https://share.streamlit.io) e inicie sesión con su cuenta de GitHub (gratuito).
-3. Haga clic en **"Create app"** (o **"New app"**).
-4. Seleccione su repositorio, la rama `main` y en *Main file path* ingrese `app.py`.
-5. Presione **"Deploy!"**. En menos de 2 minutos la aplicación estará en línea y lista para ser compartida públicamente.
+### Opción 1: Publicación en Streamlit Cloud (`*.streamlit.app`) — Recomendado
+Permite obtener una URL pública interactiva para compartir con colegas y revisores:
+1. Ingrese a [share.streamlit.io](https://share.streamlit.io) e inicie sesión con su cuenta de GitHub.
+2. Haga clic en **"Create app"** (o **"New app"**).
+3. Seleccione su repositorio: `cguillermo79/soil_research`.
+4. En **Branch**, seleccione `main` y en **Main file path** ingrese `app.py`.
+5. *(Opcional)* En **App URL**, puede personalizar el subdominio (ej: `soil-research-ecuador.streamlit.app`).
+6. Presione **"Deploy!"**. En menos de 2 minutos la aplicación estará en línea y accesible públicamente.
 
 ### Opción 2: Despliegue en GitHub Pages (`index.html`)
-1. En su repositorio de GitHub, ingrese a **Settings** > pestaña **Pages** (menú lateral izquierdo).
+1. En su repositorio [github.com/cguillermo79/soil_research](https://github.com/cguillermo79/soil_research), ingrese a **Settings** > pestaña **Pages** (menú lateral izquierdo).
 2. En **Build and deployment > Branch**, seleccione `main` y la carpeta `/ (root)`.
 3. Presione **Save**. Su dashboard estático estará accesible en:  
-   `https://SU_USUARIO.github.io/hidrologia-cafetales-ecuador/`
+   `https://cguillermo79.github.io/soil_research/`
 
 ### Opción 3: Despliegue Inmediato sin Git (Netlify Drop)
 1. Ingrese a [Netlify Drop](https://app.netlify.com/drop).
@@ -108,7 +109,7 @@ Las figuras generadas se encuentran en [`figures/`](figures/):
   author = {Equipo de Investigación en Suelos},
   journal = {Vadose Zone Journal (Enviado / En Revisión)},
   year = {2026},
-  url = {https://github.com/SU_USUARIO/hidrologia-cafetales-ecuador}
+  url = {https://github.com/cguillermo79/soil_research}
 }
 ```
 
