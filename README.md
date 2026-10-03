@@ -17,6 +17,8 @@ Repositorio oficial de datos, modelos hidrodinámicos, figuras de alta resoluci�
 | **`index.html`** | Tablero interactivo principal (Landing page para GitHub Pages / Hosting Web). Estilo editorial sobrio, visores WebGL 3D y 7 módulos de análisis. | [Ver archivo](index.html) |
 | **`manuscrito_cientifico_publicacion.md`** | Artículo científico completo en formato IMRyD listo para arbitraje (Vadose Zone Journal, Geoderma, Catena). | [Ver manuscrito](manuscrito_cientifico_publicacion.md) |
 | **`dashboard_hidrologia_suelos.html`** | Copia local idéntica del tablero interactivo para ejecución *offline*. | [Ver dashboard](dashboard_hidrologia_suelos.html) |
+| **`app.py`** | Aplicación nativa Streamlit con visores WebGL 3D interactivos, selectores y descargas para publicar en `*.streamlit.app`. | [Ver app.py](app.py) |
+| **`requirements.txt`** | Dependencias Python requeridas para despliegue en Streamlit Cloud. | [Ver requirements](requirements.txt) |
 | **`results_analysis.json`** | Base de datos consolidada (780 registros minutales pareados, parámetros hidrodinámicos, ajustes de modelos físicos y PCA 3D). | [Ver datos JSON](results_analysis.json) |
 | **`figures/`** | 6 figuras científicas vectorizadas / rasterizadas a 300 DPI listas para imprenta. | [Explorar figuras](figures/) |
 | **`Ks proyecto café/`** | Archivos brutos originales de campo de los infiltrómetros SATURO y Minidisco. | [Explorar datos crudos](Ks%20proyecto%20café/) |
@@ -25,31 +27,27 @@ Repositorio oficial de datos, modelos hidrodinámicos, figuras de alta resoluci�
 
 ## 🚀 Despliegue en la Web (Publicación Online Gratuita)
 
-El archivo `index.html` está configurado para ejecutarse sin necesidad de un servidor backend (100% *client-side* con Tailwind CSS y Plotly.js).
+### Opción 1: Publicación en Streamlit Cloud (`*.streamlit.app`) — Ideal para compartir
+Permite obtener una URL pública oficial (ejemplo: `https://hidrologia-suelos-ecuador.streamlit.app`) para compartir con colegas y revisores:
+1. Suba esta carpeta a un repositorio en su cuenta de GitHub (ej. `hidrologia-cafetales-ecuador`).
+2. Ingrese a [share.streamlit.io](https://share.streamlit.io) e inicie sesión con su cuenta de GitHub (gratuito).
+3. Haga clic en **"Create app"** (o **"New app"**).
+4. Seleccione su repositorio, la rama `main` y en *Main file path* ingrese `app.py`.
+5. Presione **"Deploy!"**. En menos de 2 minutos la aplicación estará en línea y lista para ser compartida públicamente.
 
-### Opción A: Despliegue en GitHub Pages (Recomendado, 2 minutos)
-1. Cree un nuevo repositorio en su cuenta de GitHub (ejemplo: `hidrologia-cafetales-ecuador`).
-2. Suba los archivos de esta carpeta a su repositorio:
-   ```bash
-   git init
-   git add .
-   git commit -m "Publicación de investigación hidrodinámica y dashboard"
-   git branch -M main
-   git remote add origin https://github.com/SU_USUARIO/hidrologia-cafetales-ecuador.git
-   git push -u origin main
-   ```
-3. En GitHub, ingrese a **Settings** > pestaña **Pages** (menú izquierdo).
-4. En **Build and deployment > Branch**, elija `main` y en la carpeta seleccione `/ (root)`.
-5. Presione **Save**. En 1 a 2 minutos su dashboard estará accesible públicamente a nivel mundial en:  
+### Opción 2: Despliegue en GitHub Pages (`index.html`)
+1. En su repositorio de GitHub, ingrese a **Settings** > pestaña **Pages** (menú lateral izquierdo).
+2. En **Build and deployment > Branch**, seleccione `main` y la carpeta `/ (root)`.
+3. Presione **Save**. Su dashboard estático estará accesible en:  
    `https://SU_USUARIO.github.io/hidrologia-cafetales-ecuador/`
 
-### Opción B: Despliegue Inmediato sin Git (Netlify Drop / Vercel)
+### Opción 3: Despliegue Inmediato sin Git (Netlify Drop)
 1. Ingrese a [Netlify Drop](https://app.netlify.com/drop).
 2. Arrastre y suelte la carpeta de este proyecto (`Soil_research`).
 3. Su sitio se publicará instantáneamente con una URL segura HTTPS.
 
-### Opción C: Uso Local Offline
-Haga doble clic directamente sobre `index.html` o `dashboard_hidrologia_suelos.html` en su computadora. Se abrirá en cualquier navegador moderno (Chrome, Edge, Firefox, Safari) con interactividad 3D completa.
+### Opción 4: Uso Local Offline
+Haga doble clic directamente sobre `index.html` o `dashboard_hidrologia_suelos.html` en su computadora. Se abrirá en cualquier navegador moderno sin necesidad de internet.
 
 ---
 
